@@ -1,5 +1,10 @@
+import { AuthService } from "./auth/auth.service";
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders
+} from "@angular/common/http";
 import { Deal } from "./deal";
 import { throwError, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
@@ -10,7 +15,10 @@ import { catchError } from "rxjs/operators";
 export class DealService {
   private baseUrl = "http://localhost:3001/api/deals";
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) {}
 
   getPublicDeals() {
     let finalUrl: string;
@@ -25,7 +33,12 @@ export class DealService {
     let finalUrl: string;
     finalUrl = this.baseUrl.concat("/private");
     return this.httpClient
-      .get<Deal[]>(finalUrl)
+      .get<Deal[]>(finalUrl, {
+        headers: new HttpHeaders().set(
+          "Authorization",
+          `Bearer ${this.authService.accessToken}`
+        )
+      })
       .pipe(catchError(this.handleError));
   }
 

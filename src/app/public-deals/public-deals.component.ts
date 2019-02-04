@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { DealService } from "./../deal.service";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
@@ -13,7 +14,7 @@ export class PublicDealsComponent implements OnInit, OnDestroy {
   publicDeals: Deal[];
   error: any;
 
-  constructor(public dealService: DealService) {}
+  constructor(public dealService: DealService, public authService: AuthService) {}
 
   ngOnInit() {
     this.dealSub = this.dealService.getPublicDeals().subscribe(

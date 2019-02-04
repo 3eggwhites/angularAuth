@@ -22,6 +22,7 @@ export class AuthService {
   userProfile: any;
   accessToken: string;
   authenticated: boolean;
+  _isLoggedIn: boolean;
 
   constructor(private router: Router) {
     this.getAccessToken();
@@ -34,7 +35,7 @@ export class AuthService {
   handleLoginCallback() {
     // When Auth0 hash parsed, get profile
     this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken) {
+      if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = "";
         this.getUserInfo(authResult);
       } else if (err) {
@@ -67,6 +68,7 @@ export class AuthService {
     this.accessToken = authResult.accessToken;
     this.userProfile = profile;
     this.authenticated = true;
+    console.log(profile);
   }
 
   logout() {

@@ -1,25 +1,26 @@
 <ng-template [ngIf]="authService.isLoggedIn">
     <h3 class="text-center">Special (Private) Deals</h3>
-  
+    <div class="row">
     <div class="col-sm-4" *ngFor="let deal of privateDeals">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{ deal.name }}</h3>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ deal.name }}</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-text">
           {{ deal.description }}
         </div>
-        <div class="panel-footer">
+        <div class="card-footer">
           <ul class="list-inline">
-            <li>Original</li>
-            <li class="pull-right">Sale</li>
+            <li class="float-left">Original</li>
+            <li class="float-right">Sale</li>
           </ul>
           <ul class="list-inline">
-            <li><a class="btn btn-danger">${{ deal.originalPrice | number }}</a></li>
-            <li class="pull-right"><a class="btn btn-success" (click)="dealService.purchase(deal)">${{ deal.salePrice | number }}</a></li>
+            <li class="float-left"><a class="btn btn-danger">${{ deal.originalPrice | number }}</a></li>
+            <li class="float-right"><a class="btn btn-success" (click)="dealService.purchase(deal)">${{ deal.salePrice | number }}</a></li>
           </ul>
         </div>
       </div>
+    </div>
     </div>
   </ng-template>
   
