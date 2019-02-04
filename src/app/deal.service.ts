@@ -21,8 +21,20 @@ export class DealService {
       .pipe(catchError(this.handleError));
   }
 
+  getPrivateDeals() {
+    let finalUrl: string;
+    finalUrl = this.baseUrl.concat("/private");
+    return this.httpClient
+      .get<Deal[]>(finalUrl)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(err: HttpErrorResponse) {
     console.error("An error occurred", err);
     return throwError(err);
+  }
+
+  purchase(item) {
+    alert(`You bought the: ${item.name}`);
   }
 }

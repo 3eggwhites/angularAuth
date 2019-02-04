@@ -1,36 +1,39 @@
-import { NotFoundComponent } from './not-found/not-found.component';
-import { CallbackComponent } from './callback.component';
-import { PrivateDealsComponent } from './private-deals/private-deals.component';
-import { PublicDealsComponent } from './public-deals/public-deals.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from "./auth/auth.guard";
+import { NotFoundComponent } from "./not-found/not-found.component";
+import { CallbackComponent } from "./callback.component";
+import { PrivateDealsComponent } from "./private-deals/private-deals.component";
+import { PublicDealsComponent } from "./public-deals/public-deals.component";
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
-  { 
-    path: '',
-    redirectTo: 'deals',
-    pathMatch: 'full'
+  {
+    path: "",
+    redirectTo: "deals",
+    pathMatch: "full"
   },
   {
-    path: 'deals',
+    path: "deals",
     component: PublicDealsComponent
   },
   {
-    path: 'special',
-    component: PrivateDealsComponent
+    path: "special",
+    component: PrivateDealsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'callback',
+    path: "callback",
     component: CallbackComponent
   },
   {
-    path: '**',
+    path: "**",
     component: NotFoundComponent
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

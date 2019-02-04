@@ -9,6 +9,7 @@ import { PrivateDealsComponent } from './private-deals/private-deals.component';
 import { CallbackComponent } from './callback.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DealService } from './deal.service';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DealService } from './deal.service';
     HttpClientModule
   ],
   providers: [
-    DealService
+    DealService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

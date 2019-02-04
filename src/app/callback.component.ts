@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-callback',
+  selector: 'callback',
   template: `
     <p>
-      callback works!
+      Loading....
     </p>
   `,
   styles: []
