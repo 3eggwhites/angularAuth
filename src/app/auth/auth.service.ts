@@ -38,6 +38,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = "";
         this.getUserInfo(authResult);
+        console.log(authResult);
       } else if (err) {
         console.error(`Error: ${err.error}`);
       }

@@ -9,7 +9,7 @@ export const environment = {
     domain: "angular2try.eu.auth0.com",
     audience: "http://localhost:3001",
     redirect: "http://localhost:4200/callback",
-    scope: "openid"
+    scope: "openid email"
   }
 };
 
